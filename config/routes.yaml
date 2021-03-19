@@ -1,3 +1,13 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+  path: /
+  controller: App\Controller\IndexController::index
+  methods: GET|HEAD
+
+cart:
+  path: /panier
+  controller: App\Controller\CartController:show
+  methods: GET|HEAD
+
+add-to-cart:
+  path: /panier/ajout
+  controller: App\Controller\CartController:add

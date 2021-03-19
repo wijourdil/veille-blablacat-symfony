@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-bottom">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/img/cat-love.svg" type="images/x-icon"/>
+    <title>{% block title %}BlablaCat - Adoptez un chat tout mignon{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+    {% block stylesheets %}
+        {# {{ encore_entry_link_tags('app') }} #}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    {% endblock %}
+
+    {% block javascripts %}
+        {# {{ encore_entry_script_tags('app') }} #}
+    {% endblock %}
+</head>
+<body>
+<section class="hero is-link">
+    <div class="hero-body">
+        <p class="title is-flex is-align-items-center">
+            <img src="/img/cat-love.svg" width="50">
+            <span>BlablaCat</span>
+        </p>
+        <p class="subtitle">
+            Adoptez un chat tout mignon
+        </p>
+    </div>
+</section>
+
+{% block body %}{% endblock %}
+
+<div class="navbar is-fixed-bottom is-block pb-1">
+    <div class="tabs is-boxed is-fullwidth is-large">
+        <ul>
+            <li class="{% if app.request.pathinfo == '/' %}is-active{% endif %}">
+                <a href="{{ path('index') }}">
+                    <span class="icon"><img src="/img/cat-love.svg" aria-hidden="true"></span>
+                    <span>Les chats</span>
+                </a>
+            </li>
+            <li class="{% if app.request.pathinfo == '/panier' %}is-active{% endif %}">
+                <a href="{{ path('cart') }}">
+                    <span class="icon"><img src="/img/cat-love.svg" aria-hidden="true"></span>
+                    <span>Mon panier</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="icon"><img src="/img/cat-love.svg" aria-hidden="true"></span>
+                    <span>Videos</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
