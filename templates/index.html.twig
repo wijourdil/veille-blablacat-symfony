@@ -4,7 +4,7 @@
     <section class="section">
         <div class="container">
 
-            <h1 class="title">Les chats disponibles à l'adoption</h1>
+            <h1 class="title">Les chats <small><s>à vendre</s></small> disponibles à l'adoption</h1>
 
             <div class="columns is-multiline">
                 {% for cat in cats %}
@@ -32,7 +32,9 @@
                                     {{ cat.description | raw }}
                                 </div>
 
-                                <a href="{{ path('add-to-cart', {id: cat.id}) }}" class="button is-fullwidth is-link">Acheter</a>
+                                <a href="{{ path('add-to-cart', {id: cat.id}) }}" class="button is-fullwidth is-link">
+                                    <small><s>Acheter</s></small>&nbsp;Adopter
+                                </a>
                             </div>
                         </div>
                     </div>
