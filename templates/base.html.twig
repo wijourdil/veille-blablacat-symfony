@@ -16,7 +16,7 @@
     {% endblock %}
 </head>
 <body>
-<section class="hero is-link">
+<section class="hero is-link is-small">
     <div class="hero-body">
         <p class="title is-flex is-align-items-center">
             <img src="/img/cat-love.svg" width="50">
@@ -28,10 +28,24 @@
     </div>
 </section>
 
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <section class="section pb-0">
+            <div class="container">
+                <article class="message is-{{ label }}">
+                    <div class="message-body">
+                        {{ message }}
+                    </div>
+                </article>
+            </div>
+        </section>
+    {% endfor %}
+{% endfor %}
+
 {% block body %}{% endblock %}
 
 <div class="navbar is-fixed-bottom is-block pb-1">
-    <div class="tabs is-boxed is-fullwidth is-large">
+    <div class="tabs is-boxed is-fullwidth is-medium">
         <ul>
             <li class="{% if app.request.pathinfo == '/' %}is-active{% endif %}">
                 <a href="{{ path('index') }}">
@@ -41,14 +55,14 @@
             </li>
             <li class="{% if app.request.pathinfo == '/panier' %}is-active{% endif %}">
                 <a href="{{ path('cart') }}">
-                    <span class="icon"><img src="/img/cat-love.svg" aria-hidden="true"></span>
-                    <span>Mon panier</span>
+                    <span class="icon"><img src="/img/cart.svg" aria-hidden="true"></span>
+                    <span>Mon panier ({{ cart.count }})</span>
                 </a>
             </li>
-            <li>
-                <a>
-                    <span class="icon"><img src="/img/cat-love.svg" aria-hidden="true"></span>
-                    <span>Videos</span>
+            <li class="{% if app.request.pathinfo == '/mon-compte' %}is-active{% endif %}">
+                <a href="{{ path('account') }}">
+                    <span class="icon"><img src="/img/its-me.svg" aria-hidden="true"></span>
+                    <span>Mon compte</span>
                 </a>
             </li>
         </ul>

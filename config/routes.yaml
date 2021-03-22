@@ -11,3 +11,11 @@ cart:
 add-to-cart:
   path: /panier/ajout
   controller: App\Controller\CartController:add
+
+remove-from-cart:
+  path: /panier/retirer
+  controller: App\Controller\CartController:remove
+
+account:
+  path: /mon-compte
+  controller: App\Controller\AccountController:show

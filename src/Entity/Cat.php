@@ -10,16 +10,19 @@ class Cat
 
     private string $image;
 
+    private string $icon;
+
     private float $price;
 
     private string $description;
 
-    public function __construct(int $id, string $name, string $image, float $price, string $description)
+    public function __construct(int $id, string $name, string $image, string $icon, float $price, string $description)
     {
         $this
             ->setId($id)
             ->setName($name)
             ->setImage($image)
+            ->setIcon($icon)
             ->setPrice($price)
             ->setDescription($description);
     }
@@ -31,6 +34,7 @@ class Cat
                 1,
                 'Minours',
                 'https://placekitten.com/481/398',
+                '/img/cat-smirk.svg',
                 1999,
                 'Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet'
             ),
@@ -38,6 +42,7 @@ class Cat
                 2,
                 'Chachat',
                 'https://placekitten.com/600/406',
+                '/img/cat-smile.svg',
                 9000,
                 'Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet'
             ),
@@ -45,6 +50,7 @@ class Cat
                 3,
                 "Coco l'asticot",
                 'https://placekitten.com/501/402',
+                '/img/cat-love.svg',
                 1234,
                 'Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet'
             ),
@@ -52,6 +58,7 @@ class Cat
                 4,
                 'Fricadelle',
                 'https://placekitten.com/460/403',
+                '/img/cat-cry.svg',
                 36,
                 'Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet'
             ),
@@ -59,6 +66,7 @@ class Cat
                 5,
                 'Jean-Pierre',
                 'https://placekitten.com/469/403',
+                '/img/cat-joy.svg',
                 999.99,
                 'Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet'
             ),
@@ -116,6 +124,24 @@ class Cat
     public function setImage(string $image): Cat
     {
         $this->image = $image;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIcon(): string
+    {
+        return $this->icon;
+    }
+
+    /**
+     * @param string $icon
+     * @return Cat
+     */
+    public function setIcon(string $icon): Cat
+    {
+        $this->icon = $icon;
         return $this;
     }
 

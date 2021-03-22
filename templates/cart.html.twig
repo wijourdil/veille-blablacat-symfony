@@ -3,7 +3,10 @@
 {% block body %}
     <section class="section">
         <div class="container">
-            <h1 class="title">Mon panier</h1>
+            <h1 class="title is-flex is-align-items-center">
+                <img class="mr-3" src="/img/cart.svg" width="75">
+                Mon panier
+            </h1>
 
             <table class="table is-fullwidth">
                 <thead>
@@ -11,25 +14,62 @@
                     <th>Photo</th>
                     <th>Nom du chat</th>
                     <th>Prix</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for cat in cats %}
+                {% if cats | length > 0 %}
+                    {% for cat in cats %}
+                        <tr>
+                            <td>
+                                <img src="{{ cat.image }}" width="200">
+                            </td>
+                            <td>
+                                <p class="is-flex is-align-items-center">
+                                    <img src="{{ cat.icon }}" width="50">
+                                    {{ cat.name }}
+                                </p>
+                            </td>
+                            <td>{{ cat.price | number_format(2, ',', ' ') }} €</td>
+                            <td>
+                                <a href="{{ path('remove-from-cart', {id: cat.id}) }}" class="button is-danger is-outlined is-small">
+                                    Supprimer
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
                     <tr>
-                        <td>
-                            <img src="{{ cat.image }}" width="200">
+                        <td colspan="4">
+                            <p class="is-flex is-align-items-center">
+                                <span>Il n'y a aucun chat ici</span>
+                                <img src="/img/cat-cry.svg" width="50">
+                            </p>
+                            <p>
+                                <span>
+                                    <a href="{{ path('index') }}">Rendez-vous sur cette page pour commencer à <small><s>acheter</s></small> adopter !</a>
+                                </span>
+                            </p>
                         </td>
-                        <td>{{ cat.name }}</td>
-                        <td>{{ cat.price | number_format(2, ',', ' ') }} €</td>
                     </tr>
-                {% endfor %}
+                {% endif %}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td>TOTAL : {{ total | number_format(2, ',', ' ') }} €</td>
+                    <td colspan="4" class="has-text-right">
+                        <span class="title">TOTAL : {{ total | number_format(2, ',', ' ') }} €</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
+
+            {% if cats | length > 0 %}
+                <div class="buttons is-centered">
+                    <button class="button is-large is-link">
+                        <small><s>J'achète !</s></small>&nbsp;J'adopte !
+                    </button>
+                </div>
+            {% else %}
+                <div></div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}
